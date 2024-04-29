@@ -5,7 +5,7 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, Math;
 
 type
 
@@ -24,7 +24,7 @@ type
     procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure TasksItemClick(Sender: TObject; Index: integer);
-    procedure UpdateGUI();
+    procedure UpdateGUI(FromConstrainedResize: Boolean = false);
   private
 
   public
@@ -40,7 +40,7 @@ implementation
 
 { TForm1 }
 
-procedure TForm1.UpdateGUI();
+procedure TForm1.UpdateGUI(FromConstrainedResize: Boolean = false);
 var
   hasChecked: boolean;
   i, howMany: integer;
@@ -62,10 +62,16 @@ begin
   else
     ButtonClear.Caption := 'Clear';
 
-  if Width < 600 then
-    Tasks.Columns := 1
-  else
+  if Width < 600 then begin
+    Tasks.Columns := 1;
+    Constraints.MinHeight := Max(26 * Tasks.ControlCount, 320);
+  end
+  else begin
     Tasks.Columns := 2;
+    Constraints.MinHeight := Max(13 * Tasks.ControlCount, 320);
+  end;
+
+  if (Height < Constraints.MinHeight) and (not FromConstrainedResize) then Height := Constraints.MinHeight + 1;
 end;
 
 procedure TForm1.ButtonAddClick(Sender: TObject);
@@ -103,7 +109,7 @@ end;
 procedure TForm1.FormConstrainedResize(Sender: TObject; var MinWidth,
   MinHeight, MaxWidth, MaxHeight: TConstraintSize);
 begin
-  UpdateGUI();
+  UpdateGUI(true);
 end;
 
 procedure TForm1.FormResize(Sender: TObject);
