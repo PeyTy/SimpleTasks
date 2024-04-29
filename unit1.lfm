@@ -72,11 +72,14 @@ object Form1: TForm1
     object Button2: TButton
       Left = 225
       Height = 28
+      Hint = 'Remove checked tasks from the list'
       Top = 1
       Width = 94
       Align = alRight
       Caption = 'Clear'
       OnClick = Button2Click
+      ParentShowHint = False
+      ShowHint = True
       TabOrder = 2
     end
   end
