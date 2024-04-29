@@ -35,7 +35,7 @@ object Form1: TForm1
       'Add my own tasks'
       'Just Do It!'
     )
-    OnClick = TasksClick
+    OnItemClick = TasksItemClick
     TabOrder = 0
     Data = {
       03000000030202
