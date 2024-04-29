@@ -38,7 +38,19 @@ implementation
 { TForm1 }
 
 procedure TForm1.UpdateGUI();
+var
+  hasChecked: boolean;
+  i, howMany: integer;
 begin
+  hasChecked := false;
+
+  for i := 0 to Tasks.ControlCount - 1 do begin
+    if Tasks.Checked[i] then begin
+      hasChecked := true;
+    end;
+  end;
+
+  ButtonClear.Enabled := hasChecked;
 end;
 
 procedure TForm1.ButtonAddClick(Sender: TObject);
