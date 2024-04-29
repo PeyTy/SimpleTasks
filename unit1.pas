@@ -12,13 +12,14 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    Edit1: TEdit;
+    ButtonAdd: TButton;
+    ButtonClear: TButton;
+    EditTaskText: TEdit;
     Panel1: TPanel;
     Tasks: TCheckGroup;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure ButtonAddClick(Sender: TObject);
+    procedure ButtonClearClick(Sender: TObject);
+    procedure TasksItemClick(Sender: TObject; Index: integer);
   private
 
   public
@@ -34,17 +35,17 @@ implementation
 
 { TForm1 }
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TForm1.ButtonAddClick(Sender: TObject);
 var
   input: string;
 begin
-  input := Trim(Edit1.Text);
+  input := Trim(EditTaskText.Text);
   if input = '' then exit;
   Tasks.Items.Add(input);
-  Edit1.Text := '';
+  EditTaskText.Text := '';
 end;
 
-procedure TForm1.Button2Click(Sender: TObject);
+procedure TForm1.ButtonClearClick(Sender: TObject);
 var
   i, j: integer;
 begin
