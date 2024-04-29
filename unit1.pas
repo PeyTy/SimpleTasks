@@ -35,16 +35,19 @@ implementation
 { TForm1 }
 
 procedure TForm1.Button1Click(Sender: TObject);
+var
+  input: string;
 begin
-  if Edit1.Text = '' then exit;
-  Tasks.Items.Add(Edit1.Text);
+  input := Trim(Edit1.Text);
+  if input = '' then exit;
+  Tasks.Items.Add(input);
   Edit1.Text := '';
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
-var i, j:integer; undone:string;
+var
+  i, j: integer;
 begin
-  undone := '';
   j := 0;
 
   for i := 0 to Tasks.ControlCount - 1 do begin
