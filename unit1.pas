@@ -19,6 +19,9 @@ type
     Tasks: TCheckGroup;
     procedure ButtonAddClick(Sender: TObject);
     procedure ButtonClearClick(Sender: TObject);
+    procedure FormConstrainedResize(Sender: TObject; var MinWidth, MinHeight,
+      MaxWidth, MaxHeight: TConstraintSize);
+    procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure TasksItemClick(Sender: TObject; Index: integer);
     procedure UpdateGUI();
@@ -58,6 +61,11 @@ begin
     ButtonClear.Caption := 'Clear [' + IntToStr(howMany) + ']'
   else
     ButtonClear.Caption := 'Clear';
+
+  if Width < 600 then
+    Tasks.Columns := 1
+  else
+    Tasks.Columns := 2;
 end;
 
 procedure TForm1.ButtonAddClick(Sender: TObject);
@@ -90,6 +98,17 @@ begin
   UpdateGUI();
   //Tasks.Items.Text := undone;
   //  CheckGroup1.Controls[i].Enabled := CheckGroup1.Checked[i];
+end;
+
+procedure TForm1.FormConstrainedResize(Sender: TObject; var MinWidth,
+  MinHeight, MaxWidth, MaxHeight: TConstraintSize);
+begin
+  UpdateGUI();
+end;
+
+procedure TForm1.FormResize(Sender: TObject);
+begin
+  UpdateGUI();
 end;
 
 procedure TForm1.FormShow(Sender: TObject);
