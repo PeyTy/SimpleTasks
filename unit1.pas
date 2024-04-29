@@ -51,6 +51,11 @@ begin
   for i := 0 to Tasks.ControlCount - 1 do begin
     Tasks.Controls[i].ShowHint := true;
     Tasks.Controls[i].Hint := Tasks.Items[i];
+    if Tasks.Columns > 1 then
+      Tasks.Controls[i].Constraints.MaxWidth := 300
+    else
+      Tasks.Controls[i].Constraints.MaxWidth := Width - 16;
+
     if Tasks.Checked[i] then begin
       hasChecked := true;
       howMany := howMany + 1
