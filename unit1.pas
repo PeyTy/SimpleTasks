@@ -19,7 +19,9 @@ type
     Tasks: TCheckGroup;
     procedure ButtonAddClick(Sender: TObject);
     procedure ButtonClearClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure TasksItemClick(Sender: TObject; Index: integer);
+    procedure UpdateGUI();
   private
 
   public
@@ -35,6 +37,10 @@ implementation
 
 { TForm1 }
 
+procedure TForm1.UpdateGUI();
+begin
+end;
+
 procedure TForm1.ButtonAddClick(Sender: TObject);
 var
   input: string;
@@ -43,6 +49,7 @@ begin
   if input = '' then exit;
   Tasks.Items.Add(input);
   EditTaskText.Text := '';
+  UpdateGUI();
 end;
 
 procedure TForm1.ButtonClearClick(Sender: TObject);
@@ -61,8 +68,19 @@ begin
     end;
   end;
 
+  UpdateGUI();
   //Tasks.Items.Text := undone;
   //  CheckGroup1.Controls[i].Enabled := CheckGroup1.Checked[i];
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+  UpdateGUI();
+end;
+
+procedure TForm1.TasksItemClick(Sender: TObject; Index: integer);
+begin
+  UpdateGUI();
 end;
 
 end.
