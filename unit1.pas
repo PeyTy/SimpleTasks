@@ -43,14 +43,21 @@ var
   i, howMany: integer;
 begin
   hasChecked := false;
+  howMany := 0;
 
   for i := 0 to Tasks.ControlCount - 1 do begin
     if Tasks.Checked[i] then begin
       hasChecked := true;
+      howMany := howMany + 1
     end;
   end;
 
   ButtonClear.Enabled := hasChecked;
+
+  if howMany > 0 then
+    ButtonClear.Caption := 'Clear [' + IntToStr(howMany) + ']'
+  else
+    ButtonClear.Caption := 'Clear';
 end;
 
 procedure TForm1.ButtonAddClick(Sender: TObject);
