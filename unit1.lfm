@@ -3,7 +3,7 @@ object Form1: TForm1
   Height = 358
   Top = 174
   Width = 320
-  Caption = 'Tasks'
+  Caption = 'Tasks by PeyTy'
   ClientHeight = 358
   ClientWidth = 320
   DesignTimePPI = 120
@@ -27,12 +27,14 @@ object Form1: TForm1
     ClientHeight = 303
     ClientWidth = 316
     Items.Strings = (
-      'gdgf'
-      'fggdf'
+      'Download Tasks.exe'
+      'Add my own tasks'
+      'Just Do It!'
     )
+    OnClick = TasksClick
     TabOrder = 0
     Data = {
-      020000000302
+      03000000030202
     }
   end
   object Panel1: TPanel
