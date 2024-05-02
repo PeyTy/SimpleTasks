@@ -86,6 +86,7 @@ var
   input: string;
 begin
   input := Trim(EditTaskText.Text);
+  input := StringReplace(input, '&', '&&', [rfReplaceAll]);
   if input = '' then exit;
   Tasks.Items.Add(input);
   EditTaskText.Text := '';
